@@ -13,6 +13,6 @@ export class ContainerComponent implements AfterContentInit{
   constructor(){}
   ngAfterContentInit(): void {
       console.log(this.employee);
-      this.employee.employee = "Rick"
+      this.employee.employee = "Rick" 
   }
 }
