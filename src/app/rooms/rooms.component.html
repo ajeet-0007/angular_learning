@@ -7,16 +7,43 @@
 <!-- {{ roomList | json}} -->
 <button (click)="toggle()">Toggle</button>
 
+<!-- {{rooms$ | async | json}} -->
+
+
+<div  *ngIf="rooms$ | async as rooms">
 <app-rooms-list
-  [rooms]="roomList"
+  [rooms]="rooms"
   (selectedRoom)="selectRoom($event)"
   [title]="title"
 ></app-rooms-list>
+</div>
+
+
+<!-- <app-rooms-list
+  [rooms]="rooms$ | async"
+  (selectedRoom)="selectRoom($event)"
+  [title]="title"
+></app-rooms-list> -->
 <div>
-  <button (click)="addRooms()">Add Rooms</button>
+  <button routerLink="add" class="btn btn-primary">Add Rooms</button>
+</div>
+<div>
+  <button (click)="editRooms()"  class="btn btn-primary">Edit Rooms</button>
+</div>
+<div>
+  <button (click)="deleteRoom()"  class="btn btn-primary">Delete Rooms</button>
 </div>
 <div *ngIf="rooms.availableRooms > 0" [ngStyle]="{ color: 'green' }">
   Rooms List
 </div>
 
-<div></div>
+<div>
+  <h1>{{totalBytes}}</h1>
+</div>
+
+<h1>
+  <!-- {{getError$ | async}} -->
+  Number of Rooms : {{roomsCount$ | async}}
+</h1>
+
+<router-outlet></router-outlet>

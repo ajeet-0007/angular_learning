@@ -22,8 +22,10 @@
     <td>{{ room.amenities | lowercase}}</td>
     <td>{{ room.checkInTime | date : 'dd/MM/yyyy'}}</td>
     <td>{{room.rating | number: "1.0-1"}}</td>
-    <td>
+    <!-- <td>
         <button type="button" class="btn btn-primary" (click)="selectRoom(room)">Select</button>
-    </td>
+    </td> -->
+    <button [routerLink]="['/rooms', room.roomNumber]" class="btn btn-primary">BOOK ROOM</button>
+    
   </tr>
 </table>

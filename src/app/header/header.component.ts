@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RoomsService } from '../rooms/services/rooms.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ export class HeaderComponent implements OnInit {
 
   title: string = "";
 
-  constructor() {}
+  constructor(private roomsService: RoomsService) {}
   ngOnInit(): void {
       
   }
