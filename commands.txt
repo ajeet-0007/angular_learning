@@ -1,0 +1,14 @@
+ng build -c=production
+build for production
+
+ng g m rooms --router --flat = true //for creating module
+
+ng g m booking --route=booking --routing --module=app //for creating lazy loading module
+
+ng g m search 
+ng g c search //for creating module and component in it.
+
+ng g g login // to create guard for the navigations
+
+
+

@@ -15,6 +15,7 @@ import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
 import { Observable, Subject, Subscription, catchError, of, map } from 'rxjs';
 import { HttpClient, HttpEventType } from '@angular/common/http';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'app-rooms',
@@ -46,7 +47,8 @@ export class RoomsComponent
   title = 'Room List';
 
   //services => dependency injection
-  constructor(private roomsService: RoomsService) {}
+  constructor(private roomsService: RoomsService, 
+    private configService: ConfigService) {}
 
   @ViewChild(HeaderComponent, { static: true })
   headerComponent!: HeaderComponent; //make instance of the component
