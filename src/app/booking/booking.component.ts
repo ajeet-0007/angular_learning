@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-booking',
@@ -13,15 +13,18 @@ export class BookingComponent implements OnInit {
   get guests() {return this.bookingForm.get('guests') as FormArray;}
   ngOnInit(): void {
     this.bookingForm = this.fb.group({
-      roomId: new FormControl({ value: '2', disabled: true }),
-      guestEmail: [''],
-      checkinDate: [''],
+      roomId: new FormControl(
+        { value: '2', disabled: true },
+        { validators: [Validators.required] }
+      ),
+      guestEmail: ['',  [Validators.required, Validators.email ]],
+      checkinDate: ['',],
       checkoutDate: [''],
       bookingStatus: [''],
       bookingAmount: [''],
       bookingDate: [''],
       mobileNumber: [''],
-      guestName: [''],
+      guestName: ['', [Validators.required, Validators.minLength(5)]],
       address: this.fb.group({
         addressLine1: [''],
         addressLine2: [''],
@@ -40,6 +43,11 @@ export class BookingComponent implements OnInit {
   }
   addBooking() {
     console.log(this.bookingForm.getRawValue());
+    this.bookingForm.reset({
+      guestCity: ''
+
+
+    });
   }
 
   addGuest(){

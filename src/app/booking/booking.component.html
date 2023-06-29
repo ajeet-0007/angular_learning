@@ -1,16 +1,32 @@
 <p>booking works!</p>
 {{ bookingForm.value | json }}
 
-    <div class="example-button-row">
-    <button mat-raised-button color="primary" type="button"  (click)="addPassport()">Add Passport</button>
-  </div>
+<div class="example-button-row">
+  <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    (click)="addPassport()"
+  >
+    Add Passport
+  </button>
+</div>
 
-      <div class="example-button-row">
-    <button mat-raised-button color="primary" type="button"  (click)="deletePassport()">Delete Passport</button>
-  </div>
+<div class="example-button-row">
+  <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    (click)="deletePassport()"
+  >
+    Delete Passport
+  </button>
+</div>
 <form [formGroup]="bookingForm" class="example-form" (ngSubmit)="addBooking()">
-
- <mat-form-field class="example-full-width" *ngIf="bookingForm.get('passport')">
+  <mat-form-field
+    class="example-full-width"
+    *ngIf="bookingForm.get('passport')"
+  >
     <mat-label>Passport</mat-label>
     <input
       type="text"
@@ -18,7 +34,7 @@
       formControlName="passport"
       placeholder="Passport"
     />
-    </mat-form-field>
+  </mat-form-field>
   <mat-form-field class="example-full-width">
     <mat-label>Room Id</mat-label>
     <input
@@ -52,6 +68,9 @@
       formControlName="guestName"
       placeholder="Guest Name"
     />
+        <mat-error *ngIf="bookingForm.get('guestName')?.hasError('minlength')">
+          Please enterr valid GuestName!
+        </mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width">
     <mat-label>Mobile Number</mat-label>
@@ -100,10 +119,9 @@
     ></mat-datepicker-toggle>
     <mat-datepicker #picker2></mat-datepicker>
   </mat-form-field>
-  
 
-  <div formGroupName="address"> 
-     <!-- <span>important for nested forms formGroupName</span> -->
+  <div formGroupName="address">
+    <!-- <span>important for nested forms formGroupName</span> -->
     <mat-accordion class="example-headers-align" multi>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -129,7 +147,7 @@
             placeholder="Enter your Address Line 2"
           />
         </mat-form-field>
-                <mat-form-field class="example-full-width">
+        <mat-form-field class="example-full-width">
           <mat-label>City</mat-label>
           <input
             type="text"
@@ -138,7 +156,7 @@
             placeholder="Enter your city"
           />
         </mat-form-field>
-                <mat-form-field class="example-full-width">
+        <mat-form-field class="example-full-width">
           <mat-label>State</mat-label>
           <input
             type="text"
@@ -147,7 +165,7 @@
             placeholder="Enter your state"
           />
         </mat-form-field>
-             <mat-form-field class="example-full-width">
+        <mat-form-field class="example-full-width">
           <mat-label>Country</mat-label>
           <input
             type="text"
@@ -157,7 +175,7 @@
           />
         </mat-form-field>
 
-             <mat-form-field class="example-full-width">
+        <mat-form-field class="example-full-width">
           <mat-label>Zip-Code</mat-label>
           <input
             type="text"
@@ -169,10 +187,10 @@
       </mat-expansion-panel>
     </mat-accordion>
   </div>
-  <div  formArrayName="guests">
+  <div formArrayName="guests">
     <div *ngFor="let guest of guests.controls; let i = index">
-        <div [formGroupName]="i">
-              <mat-form-field class="example-full-width">
+      <div [formGroupName]="i">
+        <mat-form-field class="example-full-width">
           <mat-label>Guest name</mat-label>
           <input
             type="text"
@@ -181,7 +199,7 @@
             placeholder="Guest Name"
           />
         </mat-form-field>
-          <mat-form-field class="example-full-width">
+        <mat-form-field class="example-full-width">
           <mat-label>Guest Age</mat-label>
           <input
             type="number"
@@ -190,17 +208,33 @@
             placeholder="Age"
           />
         </mat-form-field>
-        </div>
-          <div class="example-button-row">
-    <button mat-raised-button color="primary" type="button"  (click)="removeGuest(i)">Remove Guest</button>
-  </div>
+      </div>
+      <div class="example-button-row">
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="removeGuest(i)"
+        >
+          Remove Guest
+        </button>
+      </div>
     </div>
   </div>
-  <br>
+  <br />
   <div class="example-button-row">
-    <button mat-raised-button color="primary" type="button"  (click)="addGuest()">Add Guest</button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="addGuest()"
+    >
+      Add Guest
+    </button>
   </div>
   <div class="example-button-row">
-    <button mat-raised-button color="primary">Book Room</button>
+    <button mat-raised-button color="primary" [disabled]="bookingForm.invalid">
+      Book Room
+    </button>
   </div>
 </form>
